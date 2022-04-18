@@ -27,6 +27,7 @@ l'acquittement de changement de notification de la Topologie (TCA).
 
 
 ![image](https://user-images.githubusercontent.com/83721477/163803182-89b02ada-d7f2-47f6-979a-4feb68bfb33b.png)
+![image](https://user-images.githubusercontent.com/83721477/163815751-0b5ce7e1-4ee8-40aa-8aba-4940bda135c4.png)
 
 ### 1. Élection du commutateur racine
 ```
