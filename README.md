@@ -13,4 +13,11 @@ Tout ce processus se fait à l’aide des messages BPDU que s’échangent les c
 
 Les BPDU’s sont des trames qui sont échangées régulièrement, à peu près environ toutes les 2 secondes, et permettent aux switches de garder une trace des changements sur le réseau afin d’activer ou de désactiver les ports des équipements
 
+Il existe trois types de BPDU :
+
+la configuration BPDU(CBPDU), utilisé pour le calcul du spanning tree ;
+la notification de changement de topologie (TCN) BPDU, utilisé pour annoncer les changements topologiques ;
+l'acquittement de changement de notification de la Topologie (TCA).
+
+
 ![image](https://user-images.githubusercontent.com/83721477/163803182-89b02ada-d7f2-47f6-979a-4feb68bfb33b.png)
