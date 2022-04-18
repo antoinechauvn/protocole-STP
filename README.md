@@ -128,3 +128,6 @@ commutation !
 ```
 <br>
 L’ensemble de ces étapes ont donc pris 30 secondes pour passer du mode écoute au mode de transfert.
+
+# VARIANTES STP
+![STP-Intro-Comparatif](https://user-images.githubusercontent.com/83721477/163820241-23910f35-2929-4443-b9fc-4c5485f0c05e.png)
