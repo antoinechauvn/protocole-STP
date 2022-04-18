@@ -21,3 +21,20 @@ l'acquittement de changement de notification de la Topologie (TCA).
 
 
 ![image](https://user-images.githubusercontent.com/83721477/163803182-89b02ada-d7f2-47f6-979a-4feb68bfb33b.png)
+
+### Élection du commutateur racine
+Dans un réseau commuté, le root bridge (commutateur racine) est élu. Chaque commutateur a une adresse MAC et un numéro de priorité paramétrable (0x8000 par défaut), ces deux nombres constituant l'identifiant de pont (bridge identifier, BID). Le commutateur avec la priorité la plus basse l'emporte, et en cas d'égalité, c'est l'adresse MAC la plus basse qui l'emporte.
+
+En général, l'administrateur du réseau influence le résultat de l'élection pour que le commutateur racine choisi soit le plus près possible du cœur de réseau. Pour cela, il configure la priorité du commutateur racine le plus opportun en fonction de la topologie du réseau, ainsi que la priorité d'un autre commutateur qui deviendra commutateur racine en cas de défaillance du commutateur racine principal.
+
+### Détermination des ports racine
+Lorsqu'un switch reconnait qu'il n’est pas le ROOT, il marque le port sur lequel il reçoit ces BPDU comme son port racine. Et s’il y’a plusieurs chemins, alors il choisira, celui qui est le moins couteux. Par défaut, le cout associé à chaque port est lié à sa vitesse (plus la bande passante de l'interface est élevée, moins est le cout). Chaque commutateur doit avoir un seul root port. L'élection d'un root port est effectuée d'après les champs path cost et port ID d'un paquet BPDU. En cas d'égalité, c'est le port ayant le port ID le plus faible qui sera élu.
+
+### Détermination des ports désignés
+Pour chaque segment réseau reliant des commutateurs, un « port désigné » (designated port, DP) est ensuite déterminé. Ces segments peuvent relier plus de deux commutateurs. Le port désigné est le port relié au segment qui mène le plus directement à la racine.
+
+### Blocage des autres ports
+Les ports qui ne sont ni racine, ni désignés sont bloqués. Un port bloqué peut recevoir des paquets BPDU mais ne peut pas en émettre.
+
+### Changements de topologie
+En cas de changement de topologie, lorsqu'un lien est coupé ou qu'un commutateur tombe en panne ou est éteint, l'algorithme est exécuté à nouveau et un nouvel arbre recouvrant est mis en place. Les boucles assurent donc de la redondance.
