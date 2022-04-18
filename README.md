@@ -34,6 +34,8 @@ Dans un réseau commuté, le root bridge (commutateur racine) est élu. Chaque c
 ```
 
 ![image](https://user-images.githubusercontent.com/83721477/163805286-382d5e6f-7214-4098-890c-bc6e9489e929.png)
+![1](https://user-images.githubusercontent.com/83721477/163814466-d9da6934-6add-46bb-9d95-f5196c21c7d9.png)
+
 
 *Note: Dès que le root-bridge est élu, tous les liens vont se mettre soit en "forwarding", soit en "blocking"* <br>
 *Note bis: Tous les ports du root-bridge seront obligatoirement en "forwarding"* <br>
@@ -66,6 +68,8 @@ Tout les segments contenant un ROOT-PORT seront automatiquement mis en designate
 Les autres lisaisons posséderont un port en "designated port" et un port en "blocking port"
 ```
 
+![2](https://user-images.githubusercontent.com/83721477/163815330-513e6bf0-01c1-4c12-9517-c90b2be13569.png)
+
 #### Algorithme de définition d'un DESIGNATED-PORT:
 * La liaison avec le coût le plus faible pour attendre le "root-bridge" (root path cost) <br>
 Si égalité
@@ -75,6 +79,8 @@ Si égalité
 
 ### Blocage des autres ports (BLOCKING-PORT)
 Les ports qui ne sont ni racine, ni désignés sont bloqués. Un port bloqué peut recevoir des paquets BPDU mais ne peut pas en émettre.
+
+![3](https://user-images.githubusercontent.com/83721477/163815561-56c0a7e4-1e6f-4eb5-bffc-49d8f9e8ac75.png)
 
 ### Changements de topologie
 En cas de changement de topologie, lorsqu'un lien est coupé ou qu'un commutateur tombe en panne ou est éteint, l'algorithme est exécuté à nouveau et un nouvel arbre recouvrant est mis en place. Les boucles assurent donc de la redondance.
