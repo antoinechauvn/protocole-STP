@@ -25,6 +25,9 @@ l'acquittement de changement de notification de la Topologie (TCA).
 ### Élection du commutateur racine
 Dans un réseau commuté, le root bridge (commutateur racine) est élu. Chaque commutateur a une adresse MAC et un numéro de priorité paramétrable (0x8000 par défaut), ces deux nombres constituant l'identifiant de pont (bridge identifier, BID). Le commutateur avec la priorité la plus basse l'emporte, et en cas d'égalité, c'est l'adresse MAC la plus basse qui l'emporte.
 
+![image](https://user-images.githubusercontent.com/83721477/163805286-382d5e6f-7214-4098-890c-bc6e9489e929.png)
+
+
 En général, l'administrateur du réseau influence le résultat de l'élection pour que le commutateur racine choisi soit le plus près possible du cœur de réseau. Pour cela, il configure la priorité du commutateur racine le plus opportun en fonction de la topologie du réseau, ainsi que la priorité d'un autre commutateur qui deviendra commutateur racine en cas de défaillance du commutateur racine principal.
 
 ### Détermination des ports racine
