@@ -19,8 +19,8 @@ L'algorithme du spanning tree procède en plusieurs phases.
 ```
 Tout ce processus se fait à l’aide des messages BPDU que s’échangent les commutateurs
 Les BPDU’s sont des trames qui sont échangées régulièrement, à peu près environ toutes les 2 secondes, et
-permettent aux switches de garder une trace des changements sur le réseau afin d’activer ou de désactiver les
-ports des équipements
+permettent aux switches de garder une trace des changements sur le réseau afin d’activer ou de désactiver
+les ports des équipements
 
 Il existe trois types de BPDU :
 
@@ -37,8 +37,8 @@ Il existe trois types de BPDU :
 ```
 Dans un réseau commuté, le root bridge (commutateur racine) est élu. Chaque commutateur a une adresse MAC
 et un numéro de priorité paramétrable (0x8000 par défaut), ces deux nombres constituant l'identifiant de
-pont (bridge identifier, BID). Le commutateur avec la priorité la plus basse l'emporte, et en cas d'égalité,
-c'est l'adresse MAC la plus basse qui l'emporte.
+pont (bridge identifier, BID). Le commutateur avec la priorité la plus basse l'emporte, et en cas
+d'égalité, c'est l'adresse MAC la plus basse qui l'emporte.
 ```
 
 ![image](https://user-images.githubusercontent.com/83721477/163805286-382d5e6f-7214-4098-890c-bc6e9489e929.png)
@@ -56,15 +56,15 @@ c'est l'adresse MAC la plus basse qui l'emporte.
 ```
 En général, l'administrateur du réseau influence le résultat de l'élection pour que le commutateur racine
 choisi soit le plus près possible du cœur de réseau. Pour cela, il configure la priorité du commutateur
-racine le plus opportun en fonction de la topologie du réseau, ainsi que la priorité d'un autre commutateur
-qui deviendra commutateur racine en cas de défaillance du commutateur racine principal.
+racine le plus opportun en fonction de la topologie du réseau, ainsi que la priorité d'un autre
+commutateur qui deviendra commutateur racine en cas de défaillance du commutateur racine principal.
 ```
 
 ### 2. Détermination des ports racine (ROOT-PORT)
 ```
 Lorsqu'un switch reconnait qu'il n’est pas le ROOT, il marque le port sur lequel il reçoit ces BPDU comme
-son port racine. L'élection d'un root port est effectuée d'après les champs path cost et port ID d'un paquet
-BPDU. C'est le chemin le plus rapide vers le ROOT-BRIDGE.
+son port racine. L'élection d'un root port est effectuée d'après les champs path cost et port ID
+d'un paquet BPDU. C'est le chemin le plus rapide vers le ROOT-BRIDGE.
 ```
 
 #### Algorithme de définition d'un ROOT-PORT:
@@ -76,9 +76,9 @@ Si égalité
 
 ### 3. Détermination des ports désignés (DESIGNATED PORT)
 ```
-Tout les segments contenant un ROOT-PORT seront automatiquement mis en designated port. Les designated port
-seront en état "forwarding". Les autres lisaisons posséderont un port en "designated port" et un port
-en "blocking port"
+Tout les segments contenant un ROOT-PORT seront automatiquement mis en designated port.
+Les designated port seront en état "forwarding". Les autres lisaisons posséderont un port en
+"designated port" et un port en "blocking port"
 ```
 
 ![2](https://user-images.githubusercontent.com/83721477/163815330-513e6bf0-01c1-4c12-9517-c90b2be13569.png)
@@ -92,15 +92,15 @@ Si égalité
 
 ### Blocage des autres ports (BLOCKING-PORT)
 ```
-Les ports qui ne sont ni racine, ni désignés sont bloqués. Un port bloqué peut recevoir des paquets BPDU
-mais ne peut pas en émettre.
+Les ports qui ne sont ni racine, ni désignés sont bloqués. Un port bloqué peut recevoir des paquets
+BPDU mais ne peut pas en émettre.
 ```
 
 ![3](https://user-images.githubusercontent.com/83721477/163815561-56c0a7e4-1e6f-4eb5-bffc-49d8f9e8ac75.png)
 
 ### Changements de topologie
 ```
-En cas de changement de topologie, lorsqu'un lien est coupé ou qu'un commutateur tombe en panne ou est éteint,
-l'algorithme est exécuté à nouveau et un nouvel arbre recouvrant est mis en place. Les boucles assurent donc
-de la redondance.
+En cas de changement de topologie, lorsqu'un lien est coupé ou qu'un commutateur tombe en panne ou est
+éteint, l'algorithme est exécuté à nouveau et un nouvel arbre recouvrant est mis en place. Les boucles
+assurent donc de la redondance.
 ```
