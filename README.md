@@ -28,6 +28,10 @@ Dans un réseau commuté, le root bridge (commutateur racine) est élu. Chaque c
 ### Dès que le root-bridge est élu, tous les liens vont se mettre soit en "forwarding", soit en "blocking"
 ### Tous les ports du root-bridge seront obligatoirement en "forwarding"
 <br><br>
+Pour chaque port il existe 3 rôles:
+* ROOT-PORT
+* DESIGNATED PORT
+* BLOCKING PORT
 
 ![image](https://user-images.githubusercontent.com/83721477/163805286-382d5e6f-7214-4098-890c-bc6e9489e929.png)
 
@@ -35,10 +39,24 @@ Dans un réseau commuté, le root bridge (commutateur racine) est élu. Chaque c
 En général, l'administrateur du réseau influence le résultat de l'élection pour que le commutateur racine choisi soit le plus près possible du cœur de réseau. Pour cela, il configure la priorité du commutateur racine le plus opportun en fonction de la topologie du réseau, ainsi que la priorité d'un autre commutateur qui deviendra commutateur racine en cas de défaillance du commutateur racine principal.
 
 ### Détermination des ports racine
-Lorsqu'un switch reconnait qu'il n’est pas le ROOT, il marque le port sur lequel il reçoit ces BPDU comme son port racine. Et s’il y’a plusieurs chemins, alors il choisira, celui qui est le moins couteux. Par défaut, le cout associé à chaque port est lié à sa vitesse (plus la bande passante de l'interface est élevée, moins est le cout). Chaque commutateur doit avoir un seul root port. L'élection d'un root port est effectuée d'après les champs path cost et port ID d'un paquet BPDU. En cas d'égalité, c'est le port ayant le port ID le plus faible qui sera élu.
+Lorsqu'un switch reconnait qu'il n’est pas le ROOT, il marque le port sur lequel il reçoit ces BPDU comme son port racine.
+L'élection d'un root port est effectuée d'après les champs path cost et port ID d'un paquet BPDU. 
+Algorithme de définition d'un ROOT-PORT:
+* Le port avec la bande passante la plus élevée
+Si égalité
+* La valeur du Bridge ID la plus faible
+Si égalité
+* Le numéro de port (port ID) le plus faible
 
 ### Détermination des ports désignés
-Pour chaque segment réseau reliant des commutateurs, un « port désigné » (designated port, DP) est ensuite déterminé. Ces segments peuvent relier plus de deux commutateurs. Le port désigné est le port relié au segment qui mène le plus directement à la racine.
+Tout les segments contenant un ROOT-PORT seront automatiquement mis en designated port. Les designated port seront en état "forwarding".
+Les autres lisaisons posséderont un port en "designated port" et un port en "blocking port"
+Algorithme de définition d'un DESIGNATED-PORT:
+* La liaison avec le coût le plus faible pour attendre le "root-bridge" (root path cost)
+Si égalité
+* La priorité la plus faible (BRIDGE ID)
+Si égalité
+* L'adresse MAC la plus faible
 
 ### Blocage des autres ports
 Les ports qui ne sont ni racine, ni désignés sont bloqués. Un port bloqué peut recevoir des paquets BPDU mais ne peut pas en émettre.
