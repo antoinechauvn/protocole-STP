@@ -42,21 +42,21 @@ En général, l'administrateur du réseau influence le résultat de l'élection 
 Lorsqu'un switch reconnait qu'il n’est pas le ROOT, il marque le port sur lequel il reçoit ces BPDU comme son port racine.
 L'élection d'un root port est effectuée d'après les champs path cost et port ID d'un paquet BPDU. 
 Algorithme de définition d'un ROOT-PORT:
-* Le port avec la bande passante la plus élevée
+* Le port avec la bande passante la plus élevée <br>
 Si égalité
-* La valeur du Bridge ID la plus faible
+* La valeur du Bridge ID la plus faible <br>
 Si égalité
-* Le numéro de port (port ID) le plus faible
+* Le numéro de port (port ID) le plus faible <br>
 
 ### Détermination des ports désignés
 Tout les segments contenant un ROOT-PORT seront automatiquement mis en designated port. Les designated port seront en état "forwarding".
 Les autres lisaisons posséderont un port en "designated port" et un port en "blocking port"
 Algorithme de définition d'un DESIGNATED-PORT:
-* La liaison avec le coût le plus faible pour attendre le "root-bridge" (root path cost)
+* La liaison avec le coût le plus faible pour attendre le "root-bridge" (root path cost) <br>
 Si égalité
-* La priorité la plus faible (BRIDGE ID)
+* La priorité la plus faible (BRIDGE ID) <br>
 Si égalité
-* L'adresse MAC la plus faible
+* L'adresse MAC la plus faible <br>
 
 ### Blocage des autres ports
 Les ports qui ne sont ni racine, ni désignés sont bloqués. Un port bloqué peut recevoir des paquets BPDU mais ne peut pas en émettre.
