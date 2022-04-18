@@ -105,3 +105,13 @@ En cas de changement de topologie, lorsqu'un lien est coupé ou qu'un commutateu
 éteint, l'algorithme est exécuté à nouveau et un nouvel arbre recouvrant est mis en place. Les boucles
 assurent donc de la redondance.
 ```
+
+Vous avez dû remarquer qu’à chaque fois qu’on branche un câble sur un switch, une LED au-dessus du port, clignote en orange avant de passer au vert.
+
+Quand la LED clignote orange, c’est que le spanning tree est en train de déterminé l’état de l’interface <br>
+`Le port est en mode "écoute" pendant 15 secondes.` <br>
+Dans cette phase, il recevra et enverra des BPDU uniquement. Aucune adresse MAC ne sera associée au port et aucune transmission de donnée n’est possible. <br>
+`Ensuite le port passe en mode 'apprentissage' pendant 15 secondes aussi.` <br>
+Dans ce mode, il continue d'envoyer et de recevoir des BPDU, mais cette fois-ci, le switch est capable d’apprendre les adresses MAC. Les transmissions de données ne sont toujours pas possibles.
+À la fin de ces 15s, Le switch rentre en état de « transfert », c’est dans ce mode qu’il est capable de transférer des données, c’est-à-dire de faire son boulot de commutation !
+L’ensemble de ces étapes ont donc pris 30 secondes pour passer du mode écoute au mode de transfert.
