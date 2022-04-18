@@ -25,7 +25,8 @@ les ports des équipements
 Il existe trois types de BPDU :
 
 * la configuration BPDU(CBPDU), utilisé pour le calcul du spanning tree
-* la notification de changement de topologie (TCN) BPDU, utilisé pour annoncer les changements topologiques
+* la notification de changement de topologie (TCN) BPDU, utilisé pour annoncer les changements
+topologiques
 * l'acquittement de changement de notification de la Topologie (TCA).
 ```
 
