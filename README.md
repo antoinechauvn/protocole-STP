@@ -73,6 +73,9 @@ Si égalité
 * La valeur du Bridge ID la plus faible <br>
 Si égalité
 * Le numéro de port (port ID) le plus faible <br>
+  le port ID est constitué de deux élements:
+  * La priorité du port codée sur 8 bits (0-255)
+  * L’identifiant du port codé sur 8 bits, dépendant du matériel donc non modifiable.
 
 ### 3. Détermination des ports désignés (DESIGNATED PORT)
 ```
