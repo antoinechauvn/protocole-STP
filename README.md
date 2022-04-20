@@ -70,7 +70,7 @@ d'un paquet BPDU. C'est le chemin le plus rapide vers le ROOT-BRIDGE.
 #### Algorithme de définition d'un ROOT-PORT:
 * Le port avec la bande passante la plus élevée <br>
 Si égalité
-* La valeur du Bridge ID la plus faible du switch connecté <br>
+* La valeur du Bridge ID la plus faible des switchs connectés <br>
 Si égalité
 * Le numéro de port (port ID) le plus faible <br>
   le port ID est constitué de deux élements:
