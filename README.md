@@ -134,3 +134,8 @@ L’ensemble de ces étapes ont donc pris 30 secondes pour passer du mode écout
 # VARIANTES STP
 ![STP-Intro-Comparatif](https://user-images.githubusercontent.com/83721477/163820241-23910f35-2929-4443-b9fc-4c5485f0c05e.png)
 ![image](https://user-images.githubusercontent.com/83721477/166204643-dfae5dc3-3d90-4bc6-a43e-1c408224ba56.png)
+
+
+Au fur et à mesure que les réseaux commençaient à se développer et à devenir plus complexes, les VLAN ont été introduits, permettant la création de plusieurs réseaux logiques et physiques. Il était alors nécessaire d'exécuter plusieurs instances de STP afin de s'adapter à chaque réseau - VLAN. Ces instances multiples sont appelées Multiple Spanning Tree (MST), Per-VLAN Spanning Tree (PVST) et Per-VLAN Spanning Tree Plus (PVST+).
+
+Afin de prendre en charge les informations VLAN supplémentaires, le champ ID système étendu a été introduit, empruntant 12 bits à la priorité de pont d'origine :
