@@ -133,3 +133,4 @@ L’ensemble de ces étapes ont donc pris 30 secondes pour passer du mode écout
 
 # VARIANTES STP
 ![STP-Intro-Comparatif](https://user-images.githubusercontent.com/83721477/163820241-23910f35-2929-4443-b9fc-4c5485f0c05e.png)
+![image](https://user-images.githubusercontent.com/83721477/166204643-dfae5dc3-3d90-4bc6-a43e-1c408224ba56.png)
