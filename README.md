@@ -139,3 +139,6 @@ L’ensemble de ces étapes ont donc pris 30 secondes pour passer du mode écout
 Au fur et à mesure que les réseaux commençaient à se développer et à devenir plus complexes, les VLAN ont été introduits, permettant la création de plusieurs réseaux logiques et physiques. Il était alors nécessaire d'exécuter plusieurs instances de STP afin de s'adapter à chaque réseau - VLAN. Ces instances multiples sont appelées Multiple Spanning Tree (MST), Per-VLAN Spanning Tree (PVST) et Per-VLAN Spanning Tree Plus (PVST+).
 
 Afin de prendre en charge les informations VLAN supplémentaires, le champ ID système étendu a été introduit, empruntant 12 bits à la priorité de pont d'origine :
+
+<br>
+La valeur Bridge Priority et l' extension Extended System ID constituent ensemble une valeur de 16 bits (2 octets). La priorité de pont constituant les bits les plus à gauche est une valeur comprise entre 0 et 61440 . L' ID système étendu est une valeur de 1 à 4095 correspondant au VLAN respectif participant au STP. La priorité de pont s'incrémente par blocs de 4096 pour permettre à l' extension d'ID système de se faufiler entre chaque incrément. Ceci est clairement montré dans l'analyse ci-dessous :
