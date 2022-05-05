@@ -142,3 +142,29 @@ Afin de prendre en charge les informations VLAN supplémentaires, le champ ID sy
 
 <br>
 La valeur Bridge Priority et l' extension Extended System ID constituent ensemble une valeur de 16 bits (2 octets). La priorité de pont constituant les bits les plus à gauche est une valeur comprise entre 0 et 61440 . L' ID système étendu est une valeur de 1 à 4095 correspondant au VLAN respectif participant au STP. La priorité de pont s'incrémente par blocs de 4096 pour permettre à l' extension d'ID système de se faufiler entre chaque incrément. Ceci est clairement montré dans l'analyse ci-dessous :
+
+## PortFast
+
+PortFast est une amélioration de Cisco qui permet à un switch de commencer la communication beaucoup plus rapidement. Il se configure uniquement sur les ports du switch qui sont en mode accès.
+Généralement on l’utilise en combinaison avec la protection BPDU, comme cela, dès que le port reçoit une BPDU, il shutdown le port immédiatement.
+* PortFast n’est actif qu’à condition de l’interface ne soit pas un trunk
+* PortFast désactive le comportement normal de STP et expose donc le switch aux dangers de boucles. Il faut donc s’en prémunir et se servir de fonctionnalités complémentaires
+
+## BPDU GUARD
+
+BPDU = Bridge Protocol Data Unit
+
+Le BPDUGuard permet d’ignorer toutes les trames BPDU reçu sur un port utilisant le PortFast
+![image](https://user-images.githubusercontent.com/83721477/166995622-eb1c3966-ea70-4f46-a8c5-ef738c02d71e.png)
+
+BPDUGuard a pour but de désactiver une interface qui recevrait un BPDU alors qu’elle n’aurait pas dû.
+Une interface pour laquelle BPDUGuard est activé, et qui reçoit un BPDU, sera placée en état errDisabled (down/down, même état qu’en cas de violation de Port-Security).
+
+Pour être à nouveau fonctionnelle, l’interface devra être manuellement remise à zéro (shutdown / no shutdown) ou alors il faut utiliser les fonctionnalités « errdisable recovery » (ce sera pour un autre article).
+
+Configuration de BPDUGuard:
+```
+Switch(config)#interface FastEthernet 0/1
+Switch(config-if)#spanning-tree bpduguard enable
+```
+*Note: Ne confondez pas BPDUGuard et BPDUFilter, ce dernier a pour but d’empêcher une interface d’émettre des BPDUs mais aussi de les ignorer quand ils entrent, mais ne résout en rien le problème de base, bien au contraire.*
